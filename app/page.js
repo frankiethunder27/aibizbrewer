@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import Link from "next/link";
-import ButtonSignin from "@/components/ButtonSignin";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 import MicroOfferBuilder from "@/components/MicroOfferBuilder";
 import config from "@/config";
 
@@ -55,18 +57,9 @@ const pricingPlans = [
 export default function Page() {
   return (
     <>
-      {/* Header */}
-      <header className="p-4 flex justify-between items-center max-w-7xl mx-auto">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <span className="text-2xl">⚗️</span>
-          <span>{config.appName}</span>
-        </Link>
-        <nav className="flex items-center gap-6">
-          <a href="#features" className="hover:text-amber-600 transition-colors hidden sm:block">Features</a>
-          <a href="#pricing" className="hover:text-amber-600 transition-colors hidden sm:block">Pricing</a>
-          <ButtonSignin text="Login" />
-        </nav>
-      </header>
+      <Suspense fallback={<div className="bg-base-200 h-16" />}>
+        <Header />
+      </Suspense>
 
       <main>
         {/* Hero Section */}
@@ -275,21 +268,7 @@ export default function Page() {
         </section>
       </main>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 bg-gray-950 text-gray-400">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex items-center gap-2">
-            <span className="text-2xl">⚗️</span>
-            <span className="font-bold text-white">{config.appName}</span>
-          </div>
-          <nav className="flex gap-6 text-sm">
-            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-            <Link href="/tos" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy</Link>
-          </nav>
-          <p className="text-sm">© 2024 {config.appName}. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }
