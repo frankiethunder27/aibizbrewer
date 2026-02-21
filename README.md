@@ -1,37 +1,59 @@
-# ShipFast — Javascript
+# AI Biz Brewery ⚗️
 
-Hey maker 👋 it's Marc from [ShipFast](https://shipfa.st/docs). Let's get your startup off the ground, FAST ⚡️
+10 AI-powered tools to build, market, and scale your business. No tech skills needed.
 
-<sub>**Watch/Star the repo to be notified when updates are pushed**</sub>
+## Status
 
-## Get Started
+| Service | Status |
+|---------|--------|
+| Next.js App | ✅ Ready |
+| Health Check API | ✅ `/api/health` |
+| Google Auth | ✅ Ready (needs `GOOGLE_ID` / `GOOGLE_SECRET`) |
+| MongoDB | ✅ Ready (needs `MONGODB_URI`) |
+| Stripe Payments | ✅ Ready (needs Stripe keys) |
+| AI Tools (Claude) | ✅ Ready (needs `ANTHROPIC_API_KEY`) |
+| Email (Resend) | ✅ Ready (needs `RESEND_API_KEY`) |
 
-1. Follow the [Get Started Tutorial](https://shipfa.st/docs) to clone the repo and run your local server 💻
+## Quick Start (Local Development)
 
-<sub>**Looking for the /pages router version?** Use this [documentation](https://shipfa.st/docs-old) instead</sub>
+```bash
+# 1. Install dependencies
+npm install
 
-2. Follow the [Ship In 5 Minutes Tutorial](https://shipfa.st/docs/tutorials/ship-in-5-minutes) to learn the foundation and ship your app quickly ⚡️
+# 2. Set up environment variables
+cp .env.example .env.local
+# Fill in your values in .env.local
 
-## Links
+# 3. Run the development server
+npm run dev
+```
 
--   [📚 Documentation](https://shipfa.st/docs)
--   [📣 Updates](https://shipfast.beehiiv.com/)
--   [🧑‍💻 Discord](https://shipfa.st/dashboard)
--   [🥇 Leaderboard](https://shipfa.st/leaderboard)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Support
+## Deploy to Production
 
-Reach out at hello@shipfa.st
+See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for the full step-by-step guide to go live on Vercel.
 
-Let's ship it, FAST ⚡️
+### Required API Keys
 
+- **Anthropic** — [console.anthropic.com](https://console.anthropic.com/) (`ANTHROPIC_API_KEY`)
+- **MongoDB Atlas** — [mongodb.com/cloud/atlas](https://www.mongodb.com/cloud/atlas) (`MONGODB_URI`)
+- **Google OAuth** — [console.cloud.google.com](https://console.cloud.google.com/) (`GOOGLE_ID`, `GOOGLE_SECRET`)
+- **Stripe** — [dashboard.stripe.com](https://dashboard.stripe.com/) (`STRIPE_PUBLIC_KEY`, `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`)
+- **Resend** — [resend.com](https://resend.com/) (`RESEND_API_KEY`)
 
-**📈 Grow your startup with [DataFast](https://datafa.st?ref=shipfast_readme)**
+## Verify Deployment
 
--   Analyze your traffic
--   Get insights on your customers
--   Make data-driven decisions
+After deploying, hit the health check endpoint to confirm everything is running:
 
-ShipFast members get 30% OFF on all plans! 🎁
+```bash
+curl https://your-app.vercel.app/api/health
+```
 
-![datafast](https://github.com/user-attachments/assets/085453a6-8a66-45be-b7ea-a7a08e856ed8)
+Expected response:
+```json
+{
+  "status": "healthy",
+  "services": { "api": "operational", "database": "operational" }
+}
+```
